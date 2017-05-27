@@ -1,8 +1,5 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* Define to 1 if you have the `cunit' library (-lcunit). */
-#undef HAVE_LIBCUNIT
-
 /* Name of package */
 #undef PACKAGE
 

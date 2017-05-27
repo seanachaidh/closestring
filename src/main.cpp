@@ -23,9 +23,32 @@
 
 
 #include <iostream>
+#include <getopt.h>
 
+int test_flag = 0;
+
+static struct option long_options[] = {
+	{"test", no_argument, &test_flag, 1},
+	{0,0,0,0}
+};
+
+using namespace std;
 int main(int argc, char **argv)
 {
+	int option_index;
+	int c;
+	
+	while((c = getopt_long(argc, argv, "", long_options, &option_index)) != -1){
+		switch(c) {
+		case 0:
+			if(long_options[option_index].flag != 0){
+				break;
+			}
+			cout << "Option " << long_options[option_index].name << endl;
+		}
+	}
+	
+	cout << "Testing: " << test_flag << endl;
 	
 	return 0;
 }

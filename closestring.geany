@@ -20,6 +20,8 @@ indent_mode=2
 [project]
 name=CloseString
 base_path=/Users/pieter/Documents/Projects/closestring
+description=
+file_patterns=
 
 [long line marker]
 long_line_behaviour=1
@@ -27,6 +29,24 @@ long_line_column=72
 
 [files]
 current_page=0
+FILE_NAME_0=1610;C++;0;EUTF-8;1;1;0;%2FUsers%2Fpieter%2FDocuments%2FProjects%2Fclosestring%2Fsrc%2Fprobleminstance.cpp;0;4
+FILE_NAME_1=599;C++;0;EUTF-8;1;1;0;%2FUsers%2Fpieter%2FDocuments%2FProjects%2Fclosestring%2Finclude%2Fprobleminstance.h;0;4
+FILE_NAME_2=918;C++;0;EUTF-8;1;1;0;%2FUsers%2Fpieter%2FDocuments%2FProjects%2Fclosestring%2Ftests%2Ftest_main.cpp;0;4
 
 [VTE]
 last_dir=/Users/pieter
+
+[build-menu]
+NF_00_LB=_Make
+NF_00_CM=make
+NF_00_WD=%p
+C++FT_01_LB=_Build
+C++FT_01_CM=g++ -Wall -o "%e" "%f"
+C++FT_01_WD=
+filetypes=C++;
+EX_01_LB=test
+EX_01_CM=./src/closestring --test
+EX_01_WD=%p
+NF_03_LB=make check
+NF_03_CM=make check
+NF_03_WD=%p
