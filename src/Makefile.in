@@ -101,7 +101,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_closestring_OBJECTS = closestring-main.$(OBJEXT) \
 	closestring-ant.$(OBJEXT) \
-	closestring-probleminstance.$(OBJEXT)
+	closestring-probleminstance.$(OBJEXT) \
+	closestring-antcolony.$(OBJEXT)
 closestring_OBJECTS = $(am_closestring_OBJECTS)
 closestring_LDADD = $(LDADD)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -253,7 +254,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-closestring_SOURCES = main.cpp ant.cpp probleminstance.cpp
+closestring_SOURCES = main.cpp ant.cpp probleminstance.cpp antcolony.cpp
 closestring_CPPFLAGS = -I../include
 all: all-am
 
@@ -342,6 +343,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/closestring-ant.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/closestring-antcolony.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/closestring-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/closestring-probleminstance.Po@am__quote@
 
@@ -400,6 +402,20 @@ closestring-probleminstance.obj: probleminstance.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='probleminstance.cpp' object='closestring-probleminstance.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(closestring_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o closestring-probleminstance.obj `if test -f 'probleminstance.cpp'; then $(CYGPATH_W) 'probleminstance.cpp'; else $(CYGPATH_W) '$(srcdir)/probleminstance.cpp'; fi`
+
+closestring-antcolony.o: antcolony.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(closestring_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT closestring-antcolony.o -MD -MP -MF $(DEPDIR)/closestring-antcolony.Tpo -c -o closestring-antcolony.o `test -f 'antcolony.cpp' || echo '$(srcdir)/'`antcolony.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/closestring-antcolony.Tpo $(DEPDIR)/closestring-antcolony.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='antcolony.cpp' object='closestring-antcolony.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(closestring_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o closestring-antcolony.o `test -f 'antcolony.cpp' || echo '$(srcdir)/'`antcolony.cpp
+
+closestring-antcolony.obj: antcolony.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(closestring_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT closestring-antcolony.obj -MD -MP -MF $(DEPDIR)/closestring-antcolony.Tpo -c -o closestring-antcolony.obj `if test -f 'antcolony.cpp'; then $(CYGPATH_W) 'antcolony.cpp'; else $(CYGPATH_W) '$(srcdir)/antcolony.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/closestring-antcolony.Tpo $(DEPDIR)/closestring-antcolony.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='antcolony.cpp' object='closestring-antcolony.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(closestring_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o closestring-antcolony.obj `if test -f 'antcolony.cpp'; then $(CYGPATH_W) 'antcolony.cpp'; else $(CYGPATH_W) '$(srcdir)/antcolony.cpp'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique

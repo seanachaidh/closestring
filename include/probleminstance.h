@@ -32,6 +32,12 @@ public:
 	int getStringLength();
 	int getStringNumber();
 	int getAlphabetSize();
+	char getAlphabet(int pos);
+	
+	
+	//Goal function
+	int hammingDistance(const char* str, int j);
+	int maxHammingDistance(const char* str);
 	
 	string toString();
 	

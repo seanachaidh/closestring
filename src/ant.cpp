@@ -23,9 +23,31 @@
 
 #include <ant.h>
 
-Ant::Ant() {
+Ant::Ant(AntColony* colony) {
+	this->colony = colony;
 }
 
 Ant::~Ant() {
 	
+}
+
+void Ant::updatePheromone() {
+	for(int i = 0; i < colony->instance->getAlphabetSize(); i++) {
+		for(int j = 0; j < colony->instance->getStringLength(); j++) {
+			double old = colony->pheromone_matrix[i][j];
+			int maxham = colony->instance->maxHammingDistance(found_solution.c_str());
+			
+			colony->pheromone_matrix[i][j] = old + (1-(maxham/colony->instance->getStringLength()));
+		}
+	}
+}
+
+void Ant::constructSolution() {
+	string solution = "";
+	for(int i = 0; colony->instance->getStringLength(); i++){
+		char toadd = colony->chooseByChance(i);
+		solution += toadd;
+	}
+	
+	this->found_solution = solution;
 }
