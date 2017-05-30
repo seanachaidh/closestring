@@ -9,6 +9,8 @@
 
 #include <cstdlib>
 
+#include <vector>
+
 using namespace std;
 class ProblemInstance {
 private:
@@ -36,8 +38,10 @@ public:
 	
 	
 	//Goal function
-	int hammingDistance(const char* str, int j);
-	int maxHammingDistance(const char* str);
+    long int hammingDistance(vector<int> solution, int j);
+    long int maxHammingDistance(vector<int> solution);
+
+    string solutionToString(vector<int> solution);
 	
 	string toString();
 	

@@ -9,7 +9,7 @@ using namespace std;
 class AntColony;
 class Ant {
 private:
-	string found_solution;
+    vector<int> found_solution;
 	AntColony* colony;
 	
 public:
@@ -18,6 +18,10 @@ public:
 	
 	void constructSolution();
 	void updatePheromone();
+	
+	//Getters
+    vector<int> getSolution(){return found_solution;};
+	
 };
 
 #endif

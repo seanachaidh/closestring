@@ -79,30 +79,37 @@ ProblemInstance::~ProblemInstance() {
 	delete[] this->strings;
 }
 
-int ProblemInstance::hammingDistance(const char* str, int j) {
-	int retval = 0;
+long int ProblemInstance::hammingDistance(vector<int> solution, int j) {
+	long int retval = 0;
 	int len = this->string_length;
 	char* second = this->strings[j];
 	
 	for(int x = 0; x < len; x++){
-		if(str[x] == second[x])
+        if(alphabet[solution[x]] == second[x])
 			retval++;
 	}
 	
 	return retval;
 }
 
-int ProblemInstance::maxHammingDistance(const char* str){
-	int retval = 0;
-	int currentHD = hammingDistance(str, 0);
+long int ProblemInstance::maxHammingDistance(vector<int> solution){
+    long int currentHD = hammingDistance(solution, 0);
 	for(int i = 1; i < string_number; i++){
-		int newHD = hammingDistance(str,i);
+        long int newHD = hammingDistance(solution,i);
 		if(newHD > currentHD) {
-			currentHD = newHD;
-			retval = i;
+            currentHD = newHD;
 		}
 	}
-	return retval;
+    return currentHD;
+}
+
+string ProblemInstance::solutionToString(vector<int> solution)
+{
+    string retval = "";
+    for(int i: solution) {
+        retval.push_back(alphabet[solution[i]]);
+    }
+    return retval;
 }
 
 char ProblemInstance::getAlphabet(int pos) {
