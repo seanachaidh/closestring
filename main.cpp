@@ -15,8 +15,10 @@ char* instance_file = NULL;
 double rho = 0.2;
 int ants = 5;
 int seed = -1;
-int iterations = 5;
+int iterations = 100;
 AntColony* colony;
+
+ProblemInstance* instance;
 
 static struct option long_options[] = {
 	{"test",no_argument,&test_flag,1},
@@ -30,7 +32,7 @@ static struct option long_options[] = {
 
 void printSolution(){
     cout << "solution:" << colony->getSolutionString() << endl;
-	cout << "distance:" << colony->getHammingDistance() << endl;
+    cout << "distance:" << instance->maxHammingDistance(colony->getSolution()) << endl;
 }
 
 void printSettings() {
@@ -99,7 +101,7 @@ int main(int argc, char **argv)
 	
 	printSettings();
 	
-	ProblemInstance* instance = new ProblemInstance(instance_file);
+    instance = new ProblemInstance(instance_file);
 	
 	colony = new AntColony(instance,ants,rho);
 	colony->searchForSolution(iterations);

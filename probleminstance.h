@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include <string>
+#include <iostream>
 #include <sstream>
 #include <fstream>
 
@@ -21,7 +22,7 @@ private:
 	
 	//Not going to make this a vector because it is not going to change
 	char* alphabet;
-	char** strings;
+    vector<string> strings;
 	
 public:
 	ProblemInstance(string filename);

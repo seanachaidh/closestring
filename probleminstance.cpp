@@ -7,9 +7,9 @@ ProblemInstance::ProblemInstance(string filename) {
 	if(input.good()){
 		string tmpsize,tmpn,tmpl,tmpline;
 		
-		input >> tmpsize;
-		input >> tmpn;
-		input >> tmpl;
+        getline(input, tmpsize);
+        getline(input, tmpn);
+        getline(input, tmpl);
 		
 		this->string_number = atoi(tmpn.c_str());
 		this->string_length = atoi(tmpl.c_str());
@@ -23,11 +23,11 @@ ProblemInstance::ProblemInstance(string filename) {
 			this->alphabet[i] = letter.c_str()[0];
 		}
 		
-		this->strings = (char**) malloc(string_number*sizeof(char*));
+        //this->strings.reserve(this->string_number);
 		for(int i = 0; i < this->string_number; i++) {
-			char* tmpstring = (char*) malloc(string_length*sizeof(char));
-			input.getline(tmpstring,string_length);
-			strings[i] = tmpstring;
+            string tmpstring;
+            std::getline(input,tmpstring);
+            strings.push_back(tmpstring);
 		}
 		
 	} else {
@@ -71,21 +71,17 @@ int ProblemInstance::getStringNumber() {
 }
 
 ProblemInstance::~ProblemInstance() {
-	delete[] this->alphabet;
-	for(int i = 0; i < string_number; i++){
-		delete[] this->strings[i];
-	}
-	
-	delete[] this->strings;
+    delete[] this->alphabet;
 }
 
 long int ProblemInstance::hammingDistance(vector<int> solution, int j) {
 	long int retval = 0;
 	int len = this->string_length;
-	char* second = this->strings[j];
+    //string first = this->solutionToString(solution);
+    string second = this->strings[j];
 	
 	for(int x = 0; x < len; x++){
-        if(alphabet[solution[x]] == second[x])
+        if(alphabet[solution[x]] != second[x])
 			retval++;
 	}
 	
@@ -94,7 +90,7 @@ long int ProblemInstance::hammingDistance(vector<int> solution, int j) {
 
 long int ProblemInstance::maxHammingDistance(vector<int> solution){
     long int currentHD = hammingDistance(solution, 0);
-	for(int i = 1; i < string_number; i++){
+    for(int i = 0; i < string_number; i++){
         long int newHD = hammingDistance(solution,i);
 		if(newHD > currentHD) {
             currentHD = newHD;
