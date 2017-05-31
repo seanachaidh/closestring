@@ -37,10 +37,14 @@ public:
 	string searchForSolution(int iterations);
 	
 	//Getters
-    vector<int> getSolution() {return this->current_solution;};
+    vector<int> getSolution() {
+        return this->current_solution;
+    }
     string getSolutionString();
 
-    long int getHammingDistance() {return this->currentHam;};
+    long int getHammingDistance() {
+        return this->currentHam;
+    }
 	
 };
 
