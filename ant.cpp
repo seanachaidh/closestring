@@ -26,5 +26,22 @@ void Ant::constructSolution() {
         solution.push_back(toadd);
 	}
 	
-	this->found_solution = solution;
+    this->found_solution = solution;
+}
+
+void Ant::constructSolutionSpecial()
+{
+    vector<int> solution;
+    for(int i = 0; i < colony->instance->getStringLength(); i++){
+        double r = (double) rand() / RAND_MAX;
+        int toadd;
+        if(colony->isSpecial() && r < 0.4){
+            toadd = this->colony->getSolution()[i];
+        } else {
+            toadd = colony->chooseByChance(i);
+        }
+        solution.push_back(toadd);
+    }
+
+    this->found_solution = solution;
 }

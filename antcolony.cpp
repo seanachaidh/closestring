@@ -1,10 +1,14 @@
 #include "antcolony.h"
 
-AntColony::AntColony(ProblemInstance* instance, int ants,double rho){
+AntColony::AntColony(ProblemInstance* instance, int ants, double rho, int local, int elite, int special){
 	this->ant_amount = ants;
 	this->instance = instance;
 	this->rho = rho;
-	
+
+    this->local = local;
+    this->elite = elite;
+    this->special = special;
+
 	for(int i = 0; i < ants; i++){
 		this->ants.push_back(new Ant(this));
 	}
@@ -72,19 +76,40 @@ string AntColony::searchForSolution(int iterations){
 #endif
 		for(Ant* a: ants){
 			a->constructSolution();
-			a->updatePheromone(); //Dit is voorlopig geen elitist
+            if(!this->elite) a->updatePheromone(); //In case we are not perfoming an elitst ant
 			
 			//Check if better
             long int antham = this->instance->maxHammingDistance(a->getSolution());
 			if(antham < currentHam){
 				current_solution = a->getSolution();
+                best_ant = a;
 				currentHam = antham;
 			}
 		}
+
+        if(elite) best_ant->updatePheromone(); //in case of elite, only the best ant updates the pheromone
+
 		evaporatePheromone();
+
 	}
-	
+    if(local){
+        cout << "Performing local search"  << endl;
+        current_solution = performLocalSearch(current_solution);
+    }
     return instance->solutionToString(current_solution);
+}
+
+vector<int> AntColony::performLocalSearch(vector<int> current)
+{
+    HammingNeighbourHood *n = new HammingNeighbourHood(this->instance);
+    InitialSolution* sol = new ConstantInitialSolution(this->instance,current);
+    PivotRule* rule = new FirstImprovement(this->instance,n,sol);
+
+    vector<int> improved = rule->searchForSolution(this->instance->getStringLength()); //Nog veranderen naar een variable
+
+    delete n;delete sol;delete rule;
+
+    return improved;
 }
 
 string AntColony::getSolutionString()

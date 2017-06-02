@@ -16,6 +16,11 @@ double rho = 0.2;
 int ants = 5;
 int seed = -1;
 int iterations = 100;
+
+int special = 0;
+int elite = 0;
+int local = 0;
+
 AntColony* colony;
 
 ProblemInstance* instance;
@@ -27,6 +32,9 @@ static struct option long_options[] = {
 	{"ants",required_argument,0,'a'},
 	{"iterations",required_argument,0,'i'},
 	{"seed",required_argument,0,'s'},
+    {"local",no_argument,&local,1},
+    {"elite",no_argument,&elite,1},
+    {"special",no_argument,&special,1},
 	{0,0,0,0}
 };
 
@@ -103,7 +111,7 @@ int main(int argc, char **argv)
 	
     instance = new ProblemInstance(instance_file);
 	
-	colony = new AntColony(instance,ants,rho);
+    colony = new AntColony(instance,ants,rho,local,elite,special);
 	colony->searchForSolution(iterations);
 	
 	printSolution();

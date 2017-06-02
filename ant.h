@@ -17,6 +17,8 @@ public:
 	virtual ~Ant();
 	
 	void constructSolution();
+    void constructSolutionSpecial();
+
 	void updatePheromone();
 	
 	//Getters
