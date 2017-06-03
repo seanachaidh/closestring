@@ -31,3 +31,6 @@ HEADERS += \
     hammingneighbourhood.h \
     bestimprovement.h \
     firstimprovement.h
+
+DISTFILES += \
+    createStat.sh
