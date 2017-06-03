@@ -16,7 +16,7 @@
 class BestImprovement : public PivotRule
 {
 private:
-    vector<int> searchBest(vector<vector<int>> n, vector<int> current);
+    vector<int> searchBest(vector<vector<int> > n, vector<int> current);
 public:
     BestImprovement(ProblemInstance *instance, NeighbourHood *hood, InitialSolution *initsol);
     virtual vector <int> searchForSolution(int timelimit);
