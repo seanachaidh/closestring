@@ -40,7 +40,7 @@ public:
 	
 	//Public to avoid overhead of a getter
 	ProblemInstance* instance;
-    vector<vector<double>> pheromone_matrix;
+    vector<vector<double> > pheromone_matrix;
 	
     int chooseByChance(int position);
 	void initializePheromone();

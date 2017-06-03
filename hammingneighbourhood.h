@@ -7,8 +7,8 @@ class HammingNeighbourHood : public NeighbourHood
 {
 public:
     HammingNeighbourHood(ProblemInstance*  instance);
-    vector<vector<int>> generateNeighbourHood(vector<int> state);
-    vector<vector<int>> generateNeighbourHoodFromPoint(vector<int> state,int point);
+    vector<vector<int> > generateNeighbourHood(vector<int> state);
+    vector<vector<int> > generateNeighbourHoodFromPoint(vector<int> state,int point);
 };
 
 #endif // HAMMINGNEIGHBOURHOOD_H

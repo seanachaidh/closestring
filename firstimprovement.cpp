@@ -45,7 +45,7 @@ vector<int> FirstImprovement::searchForSolution(int timelimit)
         cout << "Iteration local search: " << i << endl;
 #endif
         //We can safely assume this here
-        vector<vector<int>> N_pi = ((HammingNeighbourHood*)this->getNeighbourHood())->generateNeighbourHoodFromPoint(pi,i);
+        vector<vector<int> > N_pi = ((HammingNeighbourHood*)this->getNeighbourHood())->generateNeighbourHoodFromPoint(pi,i);
         vector<int> tocheck = findFirstImprovement(N_pi,pi);
         if(tocheck.empty())
             break;

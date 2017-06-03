@@ -14,8 +14,8 @@ class FirstImprovement : public PivotRule
 {
 
 private:
-    vector<int> findFirstImprovement(vector<vector<int>> n, vector<int> current);
-    vector<vector<int>> generatePartialNeighbourhood(vector<int> current,int fromwhere);
+    vector<int> findFirstImprovement(vector<vector<int> > n, vector<int> current);
+    vector<vector<int> > generatePartialNeighbourhood(vector<int> current,int fromwhere);
 
     vector<int> startpoint;
 

@@ -31,7 +31,7 @@ vector<int> BestImprovement::searchForSolution(int timelimit = -1)
             if(ceil(delta_time/60) > timelimit)
                 break;
         }
-        vector<vector<int>> N_pi = this->getNeighbourHood()->generateNeighbourHood(pi);
+        vector<vector<int> > N_pi = this->getNeighbourHood()->generateNeighbourHood(pi);
         vector<int> tocheck = searchBest(N_pi,pi);
         if(tocheck.empty())
             break;

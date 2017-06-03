@@ -8,7 +8,7 @@ HammingNeighbourHood::HammingNeighbourHood(ProblemInstance *instance)
 
 vector<vector<int> > HammingNeighbourHood::generateNeighbourHood(vector<int> state)
 {
-    vector<vector<int>> retval(1);
+    vector<vector<int> > retval(1);
     long state_distance = instance->maxHammingDistance(state);
 
     int maxlen = instance->getStringLength();
@@ -35,7 +35,7 @@ vector<vector<int> > HammingNeighbourHood::generateNeighbourHood(vector<int> sta
 
 vector<vector<int> > HammingNeighbourHood::generateNeighbourHoodFromPoint(vector<int> state, int point)
 {
-    vector<vector<int>> retval(1);
+    vector<vector<int> > retval(1);
     long state_distance = instance->maxHammingDistance(state);
 
     int maxlen = instance->getStringLength() - point;

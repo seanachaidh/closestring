@@ -24,7 +24,7 @@ public:
      * Generates the neighbourhood of a given state
      *
      */
-    virtual vector<vector<int>> generateNeighbourHood(vector<int> state) = 0;
+    virtual vector<vector<int> > generateNeighbourHood(vector<int> state) = 0;
     virtual string toString()
     {
         return "Neighbourhood";
