@@ -39,7 +39,7 @@ vector<vector<int> > HammingNeighbourHood::generateNeighbourHoodFromPoint(vector
     long state_distance = instance->maxHammingDistance(state);
 
     int maxlen = instance->getStringLength() - point;
-    if (maxlen > 100) maxlen = 200;
+    if (maxlen > 200) maxlen = 200;
 
     for(int i = point; i < maxlen; i++){
         int current = state[i];
