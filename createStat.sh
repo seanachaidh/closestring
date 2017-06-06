@@ -3,6 +3,7 @@
 #Setting the seeds
 SEEDS=$(seq 500 50 1000)
 INSTANCES=$(ls instances)
+SMALLINST=$(ls smallinst)
 
 #BEST PARAMETERS BY ITERATED RACE
 ANTS=7
@@ -88,5 +89,40 @@ for i in ${INSTANCES}; do
         echo "${INSTID};${s};${VALUE}" >> stat_special_local.txt
     done
 done
+}
 
+function convergence_regular {
+    mkdir output_conv_regular
+    touch stat_conv_regular.txt
+    echo "instance;iterations;result;rpd" >> stat_conv_regular.txt
+    ITERS=$(seq 100 100 1000)
+    for s in ${SMALLINST}; do
+        for i in ${ITERS}; do
+            INSTID=$(echo ${s} | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)
+            OUTFILE=output_conv_regular/${s}_${i}.out
+            ./ClosestringQt --file smallinst/${s} --rho 0.5044 --iterations ${i} --ants 7 > ${OUTFILE}
+            RESULT=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 1)
+            BEST=$(cat instances_opt.txt | grep ${s} | cut -d ';' -f 3)
+            COST=$(echo "((${RESULT}-${BEST})/${BEST})*100" | bc -l)
+            echo "${INSTID};${s};${RESULT};${COST}" >> stat_conv_regular.txt
+        done
+    done
+}
+
+function convergence_special {
+    mkdir output_conv_special
+    touch stat_conv_special.txt
+    echo "instance;iterations;result;rpd" >> stat_conv_special.txt
+    ITERS=$(seq 100 100 1000)
+    for s in ${SMALLINST}; do
+        for i in ${ITERS}; do
+            INSTID=$(echo ${s} | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)
+            OUTFILE=output_conv_special/${s}_${i}.out
+            ./ClosestringQt --file smallinst/${s} --rho 0.5044 --iterations ${i} --ants 7 --elite --special > ${OUTFILE}
+            RESULT=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 1)
+            BEST=$(cat instances_opt.txt | grep ${s} | cut -d ';' -f 3)
+            COST=$(echo "((${RESULT}-${BEST})/${BEST})*100" | bc -l)
+            echo "${INSTID};${s};${RESULT};${COST}" >> stat_conv_special.txt
+        done
+    done
 }
