@@ -119,10 +119,29 @@ function convergence_special {
             INSTID=$(echo ${s} | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)
             OUTFILE=output_conv_special/${s}_${i}.out
             ./ClosestringQt --file smallinst/${s} --rho 0.5044 --iterations ${i} --ants 7 --elite --special > ${OUTFILE}
-            RESULT=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 1)
+            RESULT=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 2)
             BEST=$(cat instances_opt.txt | grep ${s} | cut -d ';' -f 3)
             COST=$(echo "((${RESULT}-${BEST})/${BEST})*100" | bc -l)
             echo "${INSTID};${s};${RESULT};${COST}" >> stat_conv_special.txt
         done
     done
 }
+
+function convergence_local {
+    mkdir output_conv_local
+    touch stat_conv_local.txt
+    echo "instance;iterations;result;rpd" >> stat_conv_local.txt
+    ITERS=$(seq 100 100 1000)
+    for s in ${SMALLINST}; do
+        for i in ${ITERS}; do
+            INSTID=$(echo ${s} | rev | cut -d '/' -f 1 | rev | cut -d '.' -f 1)
+            OUTFILE=output_conv_local/${s}_${i}.out
+            ./ClosestringQt --file smallinst/${s} --rho 0.5044 --iterations ${i} --ants 7 --elite --special --local > ${OUTFILE}
+            RESULT=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 2)
+            BEST=$(cat instances_opt.txt | grep ${s} | cut -d ';' -f 3)
+            COST=$(echo "((${RESULT}-${BEST})/${BEST})*100" | bc -l)
+            echo "${INSTID};${s};${RESULT};${COST}" >> stat_conv_local.txt
+        done
+    done
+}
+
