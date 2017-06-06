@@ -81,7 +81,7 @@ for i in ${INSTANCES}; do
         INSTID=$(echo ${i} | cut -d '.' -f 1)
         echo "running ${INSTID} ${s}"
         OUTFILE=output_special_local/${i}_${s}.out
-        ./ClosestringQt --file instances/${i} --seed ${s} --ants ${ANTS} --iterations ${ITERATIONS} --rho ${RHO} --elite --special > ${OUTFILE}
+        ./ClosestringQt --file instances/${i} --seed ${s} --ants ${ANTS} --iterations ${ITERATIONS} --rho ${RHO} --elite --special --local > ${OUTFILE}
         VALUE=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 2)
         echo "${INSTID};${s};${VALUE}" >> stat_special_local.txt
     done
