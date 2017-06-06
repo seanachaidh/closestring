@@ -5,9 +5,9 @@ SEEDS=$(seq 500 50 1000)
 INSTANCES=$(ls instances)
 
 #BEST PARAMETERS BY ITERATED RACE
-ANTS=5
+ANTS=7
 ITERATIONS=200
-RHO=0.8919
+RHO=0.5044
 
 function regular {
 
@@ -69,6 +69,8 @@ done
 
 }
 
+
+#8   --ants 10 --iterations 600 --rho 0.9724
 function specialLocal {
 
 mkdir output_special_local
@@ -81,7 +83,7 @@ for i in ${INSTANCES}; do
         INSTID=$(echo ${i} | cut -d '.' -f 1)
         echo "running ${INSTID} ${s}"
         OUTFILE=output_special_local/${i}_${s}.out
-        ./ClosestringQt --file instances/${i} --seed ${s} --ants ${ANTS} --iterations ${ITERATIONS} --rho ${RHO} --elite --special --local > ${OUTFILE}
+        ./ClosestringQt --file instances/${i} --seed ${s} --ants 8 --iterations 800 --rho 0.9620 --elite  --local > ${OUTFILE}
         VALUE=$(cat ${OUTFILE} | grep distance | cut -d ':' -f 2)
         echo "${INSTID};${s};${VALUE}" >> stat_special_local.txt
     done
